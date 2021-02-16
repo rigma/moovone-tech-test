@@ -1,0 +1,24 @@
+{
+    "name": "rigma/moovone-tech-test",
+    "type": "project",
+    "description": "",
+    "license": "UNLICENSE",
+    "authors": [
+        {
+            "name": "rigma",
+            "email": "rigbuntu@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/parsing.php"
+        ]
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --colors tests"
+    }
+}
