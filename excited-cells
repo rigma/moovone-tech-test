@@ -2,15 +2,27 @@
 <?php
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Parsing command arguments
-$args = getopt("K:w:v", ["steps:", "world:", "verbose"]);
-if (!$args) {
-    echo "Usage: ./excited-cells -K <nb_steps> -w <initial_world> [-v]\n";
+function help(): void {
+    echo "Usage: ./excited-cells -K <nb_steps> -w <initial_world> [-vh]\n";
     echo PHP_EOL;
     echo "\t-K, --steps\tThe number of steps to simulate\n";
     echo "\t-w, --world\tThe initial state of the world to simulate\n";
     echo "\t-v, --verbose\tDisplay world state at each step\n";
+    echo "\t-h, --help\tDisplay this help\n";
+}
+
+// Parsing command arguments
+$args = getopt("K:w:vh", ["steps:", "world:", "verbose", "help"]);
+if (!$args) {
+    echo "Error: arguments input is not correct!\n";
+    help();
     exit(1);
+}
+
+// If the user is requesting the notice, we'll display it
+if (array_key_exists('h', $args) || array_key_exists('help', $args)) {
+    help();
+    exit(0);
 }
 
 // Parsing initial world state and the number of steps to do
