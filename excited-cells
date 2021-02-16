@@ -3,23 +3,28 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 // Parsing command arguments
-$args = getopt("K:w:", ["steps:", "world:"]);
+$args = getopt("K:w:v", ["steps:", "world:", "verbose"]);
 if (!$args) {
-    echo "Usage: ./excited-cells -K <nb_steps> -w <initial_world>\n";
+    echo "Usage: ./excited-cells -K <nb_steps> -w <initial_world> [-v]\n";
     echo PHP_EOL;
     echo "\t-K, --steps\tThe number of steps to simulate\n";
     echo "\t-w, --world\tThe initial state of the world to simulate\n";
+    echo "\t-v, --verbose\tDisplay world state at each step\n";
     exit(1);
 }
 
 // Parsing initial world state and the number of steps to do
 $steps = ExcitedCells\parse_int(array_key_exists('steps', $args) ? $args['steps'] : $args['K']);
 $initialWorld = ExcitedCells\parse_array(array_key_exists('world', $args) ? $args['world'] : $args['w']);
+$verbose = array_key_exists('v', $args) || array_key_exists('verbose', $args);
 
 // Simulation
 $world = new ExcitedCells\World($initialWorld);
-$world->step($steps);
+$world->step($steps, $verbose);
 
-// Returning the final state
-echo $world . PHP_EOL;
+// Returning the final state if we are not in verbose mode
+if (!$verbose) {
+    echo $world . PHP_EOL;
+}
+
 exit(0);

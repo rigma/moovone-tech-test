@@ -23,9 +23,10 @@ final class World {
      * Makes the world moves to its next step.
      *
      * @param int $nb_steps [optional] The number of steps of the world towards progression.
+     * @param bool $verbose [optional] Indicates if we display each step.
      * @return void
      */
-    public function step(int $nb_steps = 1): void {
+    public function step(int $nb_steps = 1, $verbose = false): void {
         for ($i = 0; $i < $nb_steps; ++$i) {
             // First, we'll send the messages between cells.
             array_walk($this->world, function (Cell $cell, $index) {
@@ -48,6 +49,11 @@ final class World {
             // Then, we'll mutate each cells based on the messages they have received.
             foreach ($this->world as $cell) {
                 $cell->nextState();
+            }
+
+            // Displaying current step if we are in verbose mode
+            if ($verbose) {
+                echo $this . PHP_EOL;
             }
         }
     }
