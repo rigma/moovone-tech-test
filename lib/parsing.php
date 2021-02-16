@@ -1,4 +1,6 @@
 <?php
+namespace ExcitedCells;
+
 /**
  * Parses an integer from an input string.
  *

@@ -10,11 +10,13 @@
         }
     ],
     "autoload": {
-        "classmap": [
-            "src/"
-        ],
+        "psr-4": {
+            "ExcitedCells\\": "src/"
+        },
         "files": [
-            "src/lib/parsing.php"
+            "lib/Cell.php",
+            "lib/World.php",
+            "lib/parsing.php"
         ]
     },
     "require": {},
