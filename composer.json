@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "files": [
-            "src/parsing.php"
+            "src/lib/parsing.php"
         ]
     },
     "require": {},
